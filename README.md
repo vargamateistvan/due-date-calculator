@@ -17,8 +17,18 @@ Pluses:
 
 ## run the program
 
-``` node main.js ```
+```
+node main.js
+```
 
 ## run tests
 
-``` npm run test ```  or ``` jasmine ```
+```
+npm run test
+```
+
+or 
+
+```
+jasmine
+```
