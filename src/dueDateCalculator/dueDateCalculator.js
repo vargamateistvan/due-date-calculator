@@ -109,7 +109,6 @@ module.exports = (dependencies) => {
 		
 		turnaroundTime.days = getOverlapDays(reportDate, turnaroundTime);
 		turnaroundTime.hours = getOverlapHours(reportDate, turnaroundTime);
-		console.log("TURNAROUND TIME", turnaroundTime);
 
 		addDays(dueDate, turnaroundTime.days);
 		addHours(dueDate, turnaroundTime.hours, true);
