@@ -1,6 +1,6 @@
 # due-date-calculator
 
-The problem: 
+## The problem: 
 
 The program reads the currently reported problems (bugs) from an issue tracking system and calculates the due date following the rules below: 
 - Working hours are 9AM to 5PM every working day (Monday through Friday) 
