@@ -69,14 +69,6 @@ module.exports = (dependencies) => {
 		return (date.getHours() + turnaroundTime.hours - workingDayStart) % workingHours;
 	}
 
-	function addDays(date, days) {
-		date.setDate(date.getDate() + days);
-	}
-
-	function addHours(date, hours, toWorkingStartDate) {
-		date.setHours(toWorkingStartDate ? workingDayStart + hours : date.getHours() + hours);
-	}
-
 	function calculate(reportDate, turnaround) {
 		if (!reportDate && !turnaround) {
 			throw new Error("Please add a report time and estimated time");
@@ -101,7 +93,7 @@ module.exports = (dependencies) => {
 		const dueDate = new Date(reportDate);
 
 		if (reportDate.getHours() + turnaround < workingDayEnd) {
-			addHours(dueDate, turnaround);
+			dueDate.setHours(dueDate.getHours() + turnaround);
 			return dueDate;
 		}
 
@@ -110,8 +102,8 @@ module.exports = (dependencies) => {
 		turnaroundTime.days = getOverlapDays(reportDate, turnaroundTime);
 		turnaroundTime.hours = getOverlapHours(reportDate, turnaroundTime);
 
-		addDays(dueDate, turnaroundTime.days);
-		addHours(dueDate, turnaroundTime.hours, true);
+		dueDate.setDate(dueDate.getDate() + turnaroundTime.days);
+		dueDate.setHours(workingDayStart + turnaroundTime.hours);
 
 		return dueDate;
 	}
