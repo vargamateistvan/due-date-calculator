@@ -21,4 +21,4 @@ Pluses:
 
 ## run tests
 
-``` npm run test ```
+``` npm run test ```  or ``` jasmine ```

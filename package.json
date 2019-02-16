@@ -4,7 +4,7 @@
   "description": "The problem:",
   "main": "main.js",
   "scripts": {
-    "test": "jasmine .src/dueDateCalculator/spec.js"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
