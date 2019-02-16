@@ -16,4 +16,9 @@ Pluses:
 - Clean Code (by Robert. C. Martin) makes us happy.
 
 ## run the program
+
 ``` node main.js ```
+
+## run tests
+
+``` npm run test ```
