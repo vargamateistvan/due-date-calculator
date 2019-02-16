@@ -4,7 +4,7 @@
   "description": "The problem:",
   "main": "main.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "jasmine .src/dueDateCalculator/spec.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/vargamateistvan/due-date-calculator/issues"
   },
-  "homepage": "https://github.com/vargamateistvan/due-date-calculator#readme"
+  "homepage": "https://github.com/vargamateistvan/due-date-calculator#readme",
+  "devDependencies": {
+    "jasmine": "^3.3.1"
+  }
 }

@@ -17,7 +17,7 @@ module.exports = (dependencies) => {
 	const workingDayEnd = dependencies.end;
 
 	if (workingDayStart >= workingDayEnd) {
-		throw new Error("Please add a valid workday.");
+		throw new Error("Please add a valid workday interval.");
 	}
 
 	const workingHours = workingDayEnd - workingDayStart;
@@ -72,23 +72,23 @@ module.exports = (dependencies) => {
 
 	function calculate(reportDate, turnaround) {
 		if (!reportDate && !turnaround) {
-			throw new Error("Please add a report time and estimated time");
+			throw new Error("Please add a report time and estimated time.");
 		}
 
-		if (!reportDate instanceof Date) {
-			throw new Error("Report time should be a date");
+		if (!(reportDate instanceof Date)) {
+			throw new Error("Report time should be a date.");
 		}
 
 		if (!isValidReportTime(reportDate)) {
-			throw new Error("Please add a valid report time during the working hours on workdays");
+			throw new Error("Please add a valid report time during the working hours on workdays.");
 		}
 
 		if (typeof turnaround !== "number") {
-			throw new Error("Estimated time should be a number");
+			throw new Error("Estimated time should be a number.");
 		}
 
 		if (turnaround < 0) {
-			throw new Error("Estimated time should be bigger than 0");
+			throw new Error("Estimated time should be bigger than 0.");
 		}
 
 		const dueDate = new Date(reportDate);
