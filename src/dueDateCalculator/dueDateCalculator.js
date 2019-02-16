@@ -27,6 +27,7 @@ module.exports = (dependencies) => {
 		const hour = reportDate.getHours();
 
 		// Filter weekdays
+		// 0 - Sunday, 6 - Saturday
 		if (day === 6 || day === 0) {
 			return false;
 		}
