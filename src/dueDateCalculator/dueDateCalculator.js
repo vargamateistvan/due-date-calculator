@@ -50,24 +50,26 @@ module.exports = (dependencies) => {
 		}
 	}
 
-	function getOverlapDays(date, turnaroundTime) {
-		let days = turnaroundTime.days;
+	function getOverlapDate(date, turnAroundTime) {
+		let days = turnAroundTime.days;
 
 		// if hours overlaps another day
-		if (date.getHours() + turnaroundTime.hours >= workingDayEnd) {
+		if (date.getHours() + turnAroundTime.hours >= workingDayEnd) {
 			days++;
 		}
 
 		// if it weekend
-		if (date.getDay() + turnaroundTime.days > 5) {
+		if (date.getDay() + turnAroundTime.days > 5) {
 			days += 2;
 		}
 
-		return days;
-	}
+		// if remaing hours bigger than workinghours
+		const hours = (date.getHours() + turnAroundTime.hours - workingDayStart) % workingHours;
 
-	function getOverlapHours(date, turnaroundTime) {
-		return (date.getHours() + turnaroundTime.hours - workingDayStart) % workingHours;
+		return {
+			days,
+			hours
+		}
 	}
 
 	function calculate(reportDate, turnaround) {
@@ -98,13 +100,11 @@ module.exports = (dependencies) => {
 			return dueDate;
 		}
 
-		const turnaroundTime = getTournaround(turnaround);
-		
-		turnaroundTime.days = getOverlapDays(reportDate, turnaroundTime);
-		turnaroundTime.hours = getOverlapHours(reportDate, turnaroundTime);
+		const turnAroundTime = getTournaround(turnaround);
+		const overlapDates = getOverlapDate(reportDate, turnAroundTime);
 
-		dueDate.setDate(dueDate.getDate() + turnaroundTime.days);
-		dueDate.setHours(workingDayStart + turnaroundTime.hours);
+		dueDate.setDate(dueDate.getDate() + overlapDates.days);
+		dueDate.setHours(workingDayStart + overlapDates.hours);
 
 		return dueDate;
 	}
